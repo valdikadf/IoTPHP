@@ -1,0 +1,13 @@
+.text{
+	border:0; color:#f6931f; font-weight:bold;
+}
+.arrow{
+	margin:2px;
+	margin-top:50px;
+}
+#slider-vertical{
+	height:200px;float:left;
+}
+.align{
+	margin:0 auto;
+}

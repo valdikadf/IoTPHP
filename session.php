@@ -7,22 +7,21 @@ $conn = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
 if (!$conn) {
 	die("Connection failed: ".mysqli_connect_error());
 }
-if(isset($_GET['x'])&&isset($_GET['y'])&&isset($_GET['z'])) {
-	$x = (int)$_GET['x'];
-	$y = (int)$_GET['y'];
-	$z = (int)$_GET['z'];
-} else {
-	$x = 'NULL';
-	$y = 'NULL';
-	$z = 'NULL';
+if(isset($_GET['steering'])) {
+	$steering = (int)$_GET['steering'];
+	$sql = "UPDATE `".DB_TABLE."` SET `steering`=".$steering." WHERE `id`=".$id;
 }
-$sql = "UPDATE `".DB_TABLE."` SET `x`=".$x.",`y`=".$y.",`z`=".$z." WHERE `id`=".$id;
+if(isset($_GET['throttle'])) {
+	$throttle = (int)$_GET['throttle'];
+	$sql = "UPDATE `".DB_TABLE."` SET `throttle`=".$throttle." WHERE `id`=".$id;
+}
 
 if (mysqli_query($conn, $sql)) {
-    echo "Record updated successfully";
+    echo "Record updated successfully\nSQL: ".$sql;
 } else {
-    echo "Error updating record: " . mysqli_error($conn);
+    echo "Error updating record: " . mysqli_error($conn)."SQL:".$sql."GET ".$_GET['throttle'];;
 }
+
 
 mysqli_close($conn);
 ?>
